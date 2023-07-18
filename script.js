@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const gameContainer = document.getElementById("game");
+  const cards = document.querySelectorAll(".color-card");
   let card1 = null;
   let card2 = null;
   let cardsFound = 0;
   let stopClick =  false;
+  currentScore = 0;
 
   const COLORS = [
     "red",
@@ -11,11 +12,13 @@ document.addEventListener("DOMContentLoaded", function() {
     "green",
     "orange",
     "purple",
+    "yellow",
     "red",
     "blue",
     "green",
     "orange",
-    "purple"
+    "purple",
+    "yellow",
   ];
 
   // here is a helper function to shuffle an array
@@ -46,19 +49,16 @@ document.addEventListener("DOMContentLoaded", function() {
   // this function loops over the array of colors
   // it creates a new div and gives it a class with the value of the color
   // it also adds an event listener for a click for each card
+
   function createDivsForColors(colorArray) {
-    for (let color of colorArray) {
-      // create a new div
-      const newDiv = document.createElement("div");
+    for (let i = 0; i < colorArray.length; i++) {
 
       // give it a class attribute for the value we are looping over
-      newDiv.classList.add(color);
+      cards[i].classList.add(colorArray[i])
 
       // call a function handleCardClick when a div is clicked on
-      newDiv.addEventListener("click", handleCardClick);
+      cards[i].addEventListener("click", handleCardClick);
 
-      // append the div to the element with an id of game
-      gameContainer.append(newDiv);
     }
   }
 
@@ -68,9 +68,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // you can use event.target to see which element was clicked
     console.log("you just clicked", event.target);
     currentCard = event.target;
-    currentCard.style.backgroundColor = currentCard.classList[0];
+    currentCard.style.backgroundColor = currentCard.classList[1];
 
     if (!card1 || !card2) {
+      setScore(currentScore + 1);
       card1 = card1 || currentCard;
       card2 = currentCard === card1 ? null : currentCard; 
       //checks if card1 is clicked twice
@@ -100,9 +101,16 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
 
-    if (cardsFound === COLORS.length) alert("you win!");
+    if (cardsFound === COLORS.length) {
+      alert("you win!");
+  }
   }
 
+  
+  function setScore(newScore) {
+    currentScore = newScore;
+    document.getElementById("score").innerText = "Score: " + currentScore;
+  }
   // when the DOM loads
   createDivsForColors(shuffledColors);
 });

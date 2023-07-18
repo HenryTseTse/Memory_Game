@@ -1,7 +1,24 @@
-#game div {
+h1 {
+  text-align: center;
+  color: white;
+  background-image: url(./brain-banner.jpg.webp);
+}
+
+.row {
+  text-align: center;
+}
+
+.color-card {
   border: 1px solid black;
   width: 15%;
   height: 200px;
   margin: 10px;
   display: inline-block;
+  justify-content: center;
+
+}
+
+.color-card:hover {
+  background: #C0D6DF;
+  color: #FFF;
 }
