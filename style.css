@@ -26,3 +26,47 @@ h1 {
 .score h4 {
   height: 1px;
 }
+
+#end {
+  display: none;
+}
+
+#end.game-over {
+  display: flex;
+  position: absolute;
+  background-color: rgba(0,0,0,0.75);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  justify-content: space-around;
+  text-align: center;
+}
+
+#end h1 {
+  font-size: 8rem;
+}
+
+#end h4 {
+  font-size: 3rem;
+}
+
+.button {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background: #C0D6DF;
+  color: #FFF;
+}

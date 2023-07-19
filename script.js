@@ -107,9 +107,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     if (cardsFound === COLORS.length) {
-      setHighScore(currentScore)
-      localStorage.setItem("low-score", currentScore);
-      alert("you win!");
+      let end = document.getElementById("end");
+      setHighScore(currentScore);
+      document.getElementById("end-score").innerText = "Score: " + currentScore;
+      document.getElementById("end").classList.add("game-over");
   }
   }
 
