@@ -4,7 +4,12 @@ document.addEventListener("DOMContentLoaded", function() {
   let card2 = null;
   let cardsFound = 0;
   let stopClick =  false;
-  currentScore = 0;
+  let currentScore = 0;
+  let lowScore = localStorage.getItem("low-score");
+
+  if (lowScore) {
+    document.getElementById("low-score").innerText = "High Score: " + lowScore;
+  }
 
   const COLORS = [
     "red",
@@ -102,14 +107,23 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     if (cardsFound === COLORS.length) {
+      setHighScore(currentScore)
+      localStorage.setItem("low-score", currentScore);
       alert("you win!");
   }
   }
 
-  
+  function setHighScore(newScore) {
+    let lowScore = +localStorage.getItem("low-score") || Infinity;
+    if (newScore < lowScore) {
+      localStorage.setItem("low-score", newScore);
+      document.getElementById("low-score").innerText = "High Score: " + lowScore;
+    }
+  }
+
   function setScore(newScore) {
     currentScore = newScore;
-    document.getElementById("score").innerText = "Score: " + currentScore;
+    document.getElementById("cur-score").innerText = "Score: " + currentScore;
   }
   // when the DOM loads
   createDivsForColors(shuffledColors);

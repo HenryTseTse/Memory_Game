@@ -22,3 +22,7 @@ h1 {
   background: #C0D6DF;
   color: #FFF;
 }
+
+.score h4 {
+  height: 1px;
+}
